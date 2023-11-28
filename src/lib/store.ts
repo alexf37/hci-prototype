@@ -11,6 +11,9 @@ export type Place = {
   };
 };
 
+export const permits = ["All", "A-2", "B-2", "B-5", "F-10", "G-6"] as const;
+export type Permit = (typeof permits)[number];
+
 export const places: Place[] = [
   {
     id: 0,
@@ -100,6 +103,7 @@ export type LotTypes = (typeof lotTypes)[number];
 export type ParkingLot = {
   name: string;
   type: LotTypes;
+  permit?: Permit;
   open: boolean;
   capacity?: number;
   location: {
@@ -122,6 +126,7 @@ export const lots: ParkingLot[] = [
   {
     name: "East A",
     type: "permit",
+    permit: "A-2",
     open: true,
     capacity: 0.4,
     location: {
@@ -142,6 +147,7 @@ export const lots: ParkingLot[] = [
   {
     name: "Small Lot",
     type: "permit",
+    permit: "B-2",
     open: false,
     capacity: 0.5,
     location: {
@@ -170,7 +176,7 @@ export const INITIAL_VIEWPORT = {
 export type Filters = {
   free: boolean;
   paid: boolean;
-  permit: boolean;
+  permit: Permit;
   open: boolean;
 };
 
@@ -204,7 +210,7 @@ export const useStore = create<Store>((set) => ({
   filters: {
     free: true,
     paid: true,
-    permit: true,
+    permit: "All",
     open: false,
   },
   viewport: INITIAL_VIEWPORT,

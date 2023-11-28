@@ -6,9 +6,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import React from "react";
-import { Filters, useStore } from "@/lib/store";
+import { Filters, Permit, permits, useStore } from "@/lib/store";
 
 export function FilterModal({ children }: React.PropsWithChildren) {
   const filters = useStore((state) => state.filters);
@@ -39,7 +47,7 @@ export function FilterModal({ children }: React.PropsWithChildren) {
                 onClick={() => updateFilters({ free: !filters.free })}
               />
             </li>
-            <li className="flex justify-between items-center font-medium">
+            <li className="flex justify-between items-center font-medium pt-2">
               <h3>Paid</h3>
               <Checkbox
                 className="w-5 h-5"
@@ -49,11 +57,23 @@ export function FilterModal({ children }: React.PropsWithChildren) {
             </li>
             <li className="flex justify-between items-center font-medium">
               <h3>Permit</h3>
-              <Checkbox
-                className="w-5 h-5"
-                checked={filters.permit}
-                onClick={() => updateFilters({ permit: !filters.permit })}
-              />
+              <Select
+                defaultValue={filters.permit}
+                onValueChange={(val: Permit) => {
+                  updateFilters({ permit: val });
+                }}
+              >
+                <SelectTrigger className="w-[80px] h-9">
+                  <SelectValue placeholder="Choose" />
+                </SelectTrigger>
+                <SelectContent>
+                  {permits.map((permit) => (
+                    <SelectItem key={permit} value={permit}>
+                      {permit}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </li>
             <li className="flex justify-between items-center font-medium">
               <h3>Open Now</h3>

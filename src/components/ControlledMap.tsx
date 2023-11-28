@@ -179,7 +179,10 @@ export function ControlledMap({ children }: PropsWithChildren) {
         {lots.map(
           (lot, idx) =>
             filters[lot.type] &&
-            (filters.open ? filters.open === lot.open : true) && (
+            (filters.open ? filters.open === lot.open : true) &&
+            (lot.type === "permit"
+              ? lot.permit === filters.permit || filters.permit === "All"
+              : true) && (
               <Link key={idx} to={`/lot/$id`} params={{ id: idx.toString() }}>
                 <LotMarker lot={lot} />
               </Link>
