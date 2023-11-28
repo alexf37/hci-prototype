@@ -38,7 +38,7 @@ import { Search } from "lucide-react";
 const INITIAL_VIEWPORT = {
   latitude: 38.035629,
   longitude: -78.508403,
-  zoom: 18,
+  zoom: 17,
 };
 
 const lotTypeColors = {

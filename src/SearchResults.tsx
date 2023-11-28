@@ -20,7 +20,7 @@ export function SearchResults() {
     };
     mapRef?.flyTo({
       center: [place.location.longitude, place.location.latitude],
-      zoom: 18,
+      zoom: 17,
       speed,
     });
     return () => {
