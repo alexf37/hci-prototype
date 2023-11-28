@@ -3,7 +3,75 @@ import { Drawer } from "vaul";
 import { lots } from "./lib/store";
 import { LeftChevronIcon } from "./components/icons/LeftChevron";
 import { useMap } from "react-map-gl";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { CategoryBar } from "@tremor/react";
+import { BarChart, Card, Title } from "@tremor/react";
+
+type LotDetailProps = React.PropsWithChildren<{
+  label: string;
+}>;
+
+const chartdata4 = [
+  {
+    date: "00",
+    Running: 25,
+  },
+  {
+    date: "2AM",
+    Running: 16,
+  },
+  {
+    date: "4AM",
+    Running: 29,
+  },
+  {
+    date: "6AM",
+    Running: 45,
+  },
+  {
+    date: "8AM",
+    Running: 53,
+  },
+  {
+    date: "10AM",
+    Running: 58,
+  },
+  {
+    date: "12PM",
+    Running: 64,
+  },
+  {
+    date: "2PM",
+    Running: 56,
+  },
+  {
+    date: "4PM",
+    Running: 62,
+  },
+  {
+    date: "6PM",
+    Running: 40,
+  },
+  {
+    date: "8PM",
+    Running: 32,
+  },
+  {
+    date: "10PM",
+    Running: 21,
+  },
+];
+
+function LotDetail({ children, label }: LotDetailProps) {
+  return (
+    <div className="py-2">
+      <div className="flex justify-between items-center">
+        <div className="text-slate-500">{label}</div>
+        <div className="font-semibold">{children}</div>
+      </div>
+    </div>
+  );
+}
 
 export function Lot() {
   const router = useRouter();
@@ -47,7 +115,7 @@ export function Lot() {
       <Drawer.Root open={true} dismissible={false}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0" />
-          <Drawer.Content className="fixed bottom-0 left-0 right-0 max-h-[55%] h-full">
+          <Drawer.Content className="fixed bottom-16 left-0 right-0 max-h-[50%] h-full">
             <button
               type="button"
               className="bg-green-500 border border-green-200 text-white px-4 py-2.5 rounded-full shadow-lg text-3xl font-bold mb-3 ml-4"
@@ -63,10 +131,54 @@ export function Lot() {
             >
               GO
             </button>
-            <div className="bg-white border border-slate-300 flex flex-col rounded-t-2xl h-full pt-4 shadow-2xl">
+            <div className="bg-white border border-slate-300 flex flex-col rounded-t-2xl pt-4 shadow-2xl h-full">
               <div className="overflow-y-auto">
                 <div className="max-w-md w-full mx-auto flex flex-col p-4 px-8 h-full">
                   <h1 className="font-semibold text-3xl">{lot.name}</h1>
+                  <div className="divide-y divide-slate-300">
+                    <LotDetail label="Price">$4.00/hr</LotDetail>
+                    <LotDetail label="Time limit">3hrs</LotDetail>
+                    <LotDetail label="Hours">5pm-8pm, Mon-Fri</LotDetail>
+                    <div className="py-2">
+                      <div className="text-slate-500">Activity</div>
+                      <BarChart
+                        className="pt-4 h-24"
+                        data={chartdata4}
+                        index="date"
+                        categories={["Running"]}
+                        colors={["blue"]}
+                        showYAxis={false}
+                        showLegend={false}
+                        showGridLines={false}
+                      />
+                    </div>
+                    <div className="pt-3 pb-4">
+                      <div className="flex items-center justify-between">
+                        <div className="text-slate-500">Towing Probability</div>
+                        <div className="font-semibold">62%</div>
+                      </div>
+                      <CategoryBar
+                        values={[40, 30, 20, 10]}
+                        colors={["emerald", "yellow", "orange", "rose"]}
+                        markerValue={62}
+                        className="pt-3"
+                      />
+                    </div>
+                    <div className="py-2 pb-8">
+                      <div className="flex items-center justify-between">
+                        <div className="text-slate-500">
+                          Ticketing Probability
+                        </div>
+                        <div className="font-semibold">27%</div>
+                      </div>
+                      <CategoryBar
+                        values={[40, 30, 20, 10]}
+                        colors={["emerald", "yellow", "orange", "rose"]}
+                        markerValue={27}
+                        className="pt-3"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
