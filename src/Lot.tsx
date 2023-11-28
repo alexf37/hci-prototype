@@ -163,7 +163,9 @@ export function Lot() {
                     />
                   </div>
                   <div className="divide-y divide-slate-300">
-                    <LotDetail label="Price">$4.00/hr</LotDetail>
+                    {lot.type === "paid" && (
+                      <LotDetail label="Price">$4.00/hr</LotDetail>
+                    )}
                     <LotDetail label="Time limit">3hrs</LotDetail>
                     <LotDetail label="Hours">5pm-8pm, Mon-Fri</LotDetail>
                     <div className="py-2">
