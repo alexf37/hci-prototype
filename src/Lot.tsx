@@ -47,7 +47,22 @@ export function Lot() {
       <Drawer.Root open={true} dismissible={false}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0" />
-          <Drawer.Content className="fixed bottom-0 left-0 right-0 max-h-[50%] h-full">
+          <Drawer.Content className="fixed bottom-0 left-0 right-0 max-h-[55%] h-full">
+            <button
+              type="button"
+              className="bg-green-500 border border-green-200 text-white px-4 py-2.5 rounded-full shadow-lg text-3xl font-bold mb-3 ml-4"
+              onClick={() => {
+                window.open(
+                  "https://maps.google.com?q=" +
+                    lot.location.latitude +
+                    "," +
+                    lot.location.longitude,
+                  "_blank"
+                );
+              }}
+            >
+              GO
+            </button>
             <div className="bg-white border border-slate-300 flex flex-col rounded-t-2xl h-full pt-4 shadow-2xl">
               <div className="overflow-y-auto">
                 <div className="max-w-md w-full mx-auto flex flex-col p-4 px-8 h-full">
