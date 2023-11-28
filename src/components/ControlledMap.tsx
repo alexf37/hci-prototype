@@ -38,7 +38,7 @@ import { Search } from "lucide-react";
 const INITIAL_VIEWPORT = {
   latitude: 38.035629,
   longitude: -78.508403,
-  zoom: 14,
+  zoom: 18,
 };
 
 const lotTypeColors = {
@@ -74,6 +74,14 @@ function LotMarker({ lot }: { lot: ParkingLot }) {
           color={lotTypeColors[lot.type]}
         />
       </div>
+      {lot.capacity && (
+        <div className="h-2 w-10 rounded-full mx-auto bg-white shadow">
+          <div
+            className="h-full rounded-full bg-blue-400"
+            style={{ width: `${lot.capacity * 100}%` }}
+          />
+        </div>
+      )}
     </Marker>
   );
 }
