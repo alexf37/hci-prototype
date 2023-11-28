@@ -6,6 +6,18 @@ import { CloseIcon } from "./icons/CloseIcon";
 import { useGeolocation } from "@uidotdev/usehooks";
 import { Report, useStore } from "@/lib/store";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 const CLASSNAME =
   "bg-white rounded-full pointer-events-auto grid place-content-center p-3 drop-shadow border border-slate-200";
 
@@ -34,14 +46,48 @@ export function ReportsMenu() {
       {open && (
         <ul className="space-y-2">
           <li className={CLASSNAME}>
-            <button type="button" onClick={() => addReport("construction")}>
-              <ConstructionIcon className="w-7 h-7" />
-            </button>
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <ConstructionIcon className="w-7 h-7" />
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will mark your location as an ongoing construction
+                    site. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => addReport("construction")}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </li>
           <li className={CLASSNAME}>
-            <button type="button" onClick={() => addReport("police")}>
-              <PoliceIcon className="w-7 h-7" />
-            </button>
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <PoliceIcon className="w-7 h-7" />
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will show police activity at your location on the map.
+                    This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => addReport("police")}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </li>
         </ul>
       )}
