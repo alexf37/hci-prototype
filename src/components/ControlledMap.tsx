@@ -172,11 +172,7 @@ export function ControlledMap({ children }: PropsWithChildren) {
           (lot, idx) =>
             filters[lot.type] &&
             (filters.open ? filters.open === lot.open : true) && (
-              <Link
-                key={lot.location.latitude}
-                to={`/lot/$id`}
-                params={{ id: idx.toString() }}
-              >
+              <Link key={idx} to={`/lot/$id`} params={{ id: idx.toString() }}>
                 <LotMarker lot={lot} />
               </Link>
             )
