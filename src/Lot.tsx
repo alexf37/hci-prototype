@@ -179,6 +179,7 @@ export function Lot() {
                         showYAxis={false}
                         showLegend={false}
                         showGridLines={false}
+                        showTooltip={false}
                       />
                     </div>
                     <div className="pt-3 pb-4">
