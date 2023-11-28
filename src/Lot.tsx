@@ -5,7 +5,7 @@ import { LeftChevronIcon } from "./components/icons/LeftChevron";
 import { useMap } from "react-map-gl";
 import React, { useEffect } from "react";
 import { CategoryBar } from "@tremor/react";
-import { BarChart, Card, Title } from "@tremor/react";
+import { BarChart } from "@tremor/react";
 
 type LotDetailProps = React.PropsWithChildren<{
   label: string;
@@ -116,21 +116,38 @@ export function Lot() {
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0" />
           <Drawer.Content className="fixed bottom-16 left-0 right-0 max-h-[50%] h-full">
-            <button
-              type="button"
-              className="bg-green-500 border border-green-200 text-white px-4 py-2.5 rounded-full shadow-lg text-3xl font-bold mb-3 ml-4"
-              onClick={() => {
-                window.open(
-                  "https://maps.google.com?q=" +
-                    lot.location.latitude +
-                    "," +
-                    lot.location.longitude,
-                  "_blank"
-                );
-              }}
-            >
-              GO
-            </button>
+            <div className="flex justify-between w-full px-4 pb-3 items-end">
+              <button
+                type="button"
+                className="bg-green-500 border border-green-200 text-white px-4 py-2.5 rounded-full shadow-lg text-3xl font-bold"
+                onClick={() => {
+                  window.open(
+                    "https://maps.google.com?q=" +
+                      lot.location.latitude +
+                      "," +
+                      lot.location.longitude,
+                    "_blank"
+                  );
+                }}
+              >
+                GO
+              </button>
+              {lot.type === "paid" && (
+                <button
+                  type="button"
+                  className="bg-green-500 border border-green-200 text-white px-4 py-2.5 rounded-full shadow-lg text-xl font-bold"
+                  onClick={() => {
+                    window.open(
+                      "https://parkmobile.app.link/SYLSYDYShR",
+                      "_blank"
+                    );
+                  }}
+                >
+                  <span className="text-slate-800 font-semibold">Pay with</span>{" "}
+                  ParkMobile
+                </button>
+              )}
+            </div>
             <div className="bg-white border border-slate-300 flex flex-col rounded-t-2xl pt-4 shadow-2xl h-full">
               <div className="overflow-y-auto">
                 <div className="max-w-md w-full mx-auto flex flex-col p-4 px-8 h-full">
