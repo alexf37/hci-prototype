@@ -11,7 +11,20 @@ export type Place = {
   };
 };
 
-export const permits = ["All", "A-2", "B-2", "B-5", "F-10", "G-6"] as const;
+export const permits = [
+  "All",
+  "A2",
+  "B2",
+  "B5",
+  "E3",
+  "E4",
+  "F10",
+  "G6",
+  "S6",
+  "T3",
+  "T4",
+  "Red",
+] as const;
 export type Permit = (typeof permits)[number];
 
 export const places: Place[] = [
@@ -126,7 +139,7 @@ export const lots: ParkingLot[] = [
   {
     name: "East A",
     type: "permit",
-    permit: "A-2",
+    permit: "A2",
     open: true,
     capacity: 0.4,
     location: {
@@ -147,7 +160,7 @@ export const lots: ParkingLot[] = [
   {
     name: "Small Lot",
     type: "permit",
-    permit: "B-2",
+    permit: "B2",
     open: false,
     capacity: 0.5,
     location: {
