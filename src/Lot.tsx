@@ -3,9 +3,10 @@ import { Drawer } from "vaul";
 import { lots } from "./lib/store";
 import { LeftChevronIcon } from "./components/icons/LeftChevron";
 import { useMap } from "react-map-gl";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CategoryBar } from "@tremor/react";
 import { BarChart } from "@tremor/react";
+import { SavedIcon } from "./components/icons/SavedIcon";
 
 type LotDetailProps = React.PropsWithChildren<{
   label: string;
@@ -13,52 +14,52 @@ type LotDetailProps = React.PropsWithChildren<{
 
 const chartdata4 = [
   {
-    date: "00",
-    Running: 25,
+    date: "12AM",
+    "% Capacity": 25,
   },
   {
     date: "2AM",
-    Running: 16,
+    "% Capacity": 16,
   },
   {
     date: "4AM",
-    Running: 29,
+    "% Capacity": 29,
   },
   {
     date: "6AM",
-    Running: 45,
+    "% Capacity": 45,
   },
   {
     date: "8AM",
-    Running: 53,
+    "% Capacity": 53,
   },
   {
     date: "10AM",
-    Running: 58,
+    "% Capacity": 58,
   },
   {
     date: "12PM",
-    Running: 64,
+    "% Capacity": 64,
   },
   {
     date: "2PM",
-    Running: 56,
+    "% Capacity": 56,
   },
   {
     date: "4PM",
-    Running: 62,
+    "% Capacity": 62,
   },
   {
     date: "6PM",
-    Running: 40,
+    "% Capacity": 40,
   },
   {
     date: "8PM",
-    Running: 32,
+    "% Capacity": 32,
   },
   {
     date: "10PM",
-    Running: 21,
+    "% Capacity": 21,
   },
 ];
 
@@ -78,6 +79,8 @@ export function Lot() {
   const { id } = useParams(router.routeTree.parentRoute);
   const lotIdx = parseInt(id);
   const lot = lots[lotIdx];
+
+  const [saved, setSaved] = useState(false);
 
   const { map: mapRef } = useMap();
   useEffect(() => {
@@ -115,7 +118,7 @@ export function Lot() {
       <Drawer.Root open={true} dismissible={false}>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0" />
-          <Drawer.Content className="fixed bottom-16 left-0 right-0 max-h-[50%] h-full">
+          <Drawer.Content className="fixed bottom-16 left-0 right-0 max-h-[50%] h-full !outline-none">
             <div className="flex justify-between w-full px-4 pb-3 items-end">
               <button
                 type="button"
@@ -151,7 +154,14 @@ export function Lot() {
             <div className="bg-white border border-slate-300 flex flex-col rounded-t-2xl pt-4 shadow-2xl h-full">
               <div className="overflow-y-auto">
                 <div className="max-w-md w-full mx-auto flex flex-col p-4 px-8 h-full">
-                  <h1 className="font-semibold text-3xl">{lot.name}</h1>
+                  <div className="flex justify-between items-center pb-2">
+                    <h1 className="font-semibold text-3xl">{lot.name}</h1>
+                    <SavedIcon
+                      filled={saved}
+                      className="w-6 h-6 cursor-pointer"
+                      onClick={() => setSaved(!saved)}
+                    />
+                  </div>
                   <div className="divide-y divide-slate-300">
                     <LotDetail label="Price">$4.00/hr</LotDetail>
                     <LotDetail label="Time limit">3hrs</LotDetail>
@@ -162,7 +172,7 @@ export function Lot() {
                         className="pt-4 h-24"
                         data={chartdata4}
                         index="date"
-                        categories={["Running"]}
+                        categories={["% Capacity"]}
                         colors={["blue"]}
                         showYAxis={false}
                         showLegend={false}
