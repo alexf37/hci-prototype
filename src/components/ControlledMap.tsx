@@ -53,6 +53,9 @@ const reportTypeIcons = {
 } as const as Record<ReportTypes, ReactNode>;
 
 function LotMarker({ lot }: { lot: ParkingLot }) {
+  const router = useRouter();
+  const { id } = useParams(router.routeTree.parentRoute);
+  const lotDetailsIsActive = id !== undefined && lot.id.toString() === id;
   return (
     <Marker latitude={lot.location.latitude} longitude={lot.location.longitude}>
       <div className="relative text-white cursor-pointer">
@@ -80,6 +83,12 @@ function LotMarker({ lot }: { lot: ParkingLot }) {
             className="h-full rounded-full bg-blue-400"
             style={{ width: `${lot.capacity * 100}%` }}
           />
+        </div>
+      )}
+      {lotDetailsIsActive && (
+        <div className="-space-y-1 text-center font-semibold text-md">
+          <div className="pt-2 ">0.4 miles</div>
+          <div>5 minutes</div>
         </div>
       )}
     </Marker>
@@ -183,7 +192,11 @@ export function ControlledMap({ children }: PropsWithChildren) {
             (lot.type === "permit"
               ? lot.permit === filters.permit || filters.permit === "All"
               : true) && (
-              <Link key={idx} to={`/lot/$id`} params={{ id: idx.toString() }}>
+              <Link
+                key={lot.id}
+                to={`/lot/$id`}
+                params={{ id: idx.toString() }}
+              >
                 <LotMarker lot={lot} />
               </Link>
             )

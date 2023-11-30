@@ -124,6 +124,7 @@ export const lotTypes = ["free", "paid", "permit"] as const;
 export type LotTypes = (typeof lotTypes)[number];
 
 export type ParkingLot = {
+  id: number;
   name: string;
   type: LotTypes;
   permit?: Permit;
@@ -137,6 +138,7 @@ export type ParkingLot = {
 
 export const lots: ParkingLot[] = [
   {
+    id: 0,
     name: "Central Grounds Garage",
     type: "paid",
     open: true,
@@ -147,6 +149,7 @@ export const lots: ParkingLot[] = [
     },
   },
   {
+    id: 1,
     name: "East A",
     type: "permit",
     permit: "A2",
@@ -158,6 +161,7 @@ export const lots: ParkingLot[] = [
     },
   },
   {
+    id: 2,
     name: "South Lot",
     type: "free",
     open: true,
@@ -168,6 +172,7 @@ export const lots: ParkingLot[] = [
     },
   },
   {
+    id: 3,
     name: "Small Lot",
     type: "permit",
     permit: "B2",
@@ -179,6 +184,7 @@ export const lots: ParkingLot[] = [
     },
   },
   {
+    id: 4,
     name: "Life Sciences Lot",
     type: "paid",
     open: true,
