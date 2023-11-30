@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { CategoryBar } from "@tremor/react";
 import { BarChart } from "@tremor/react";
 import { SavedIcon } from "./components/icons/SavedIcon";
+import { useToast } from "./components/ui/use-toast";
 
 type LotDetailProps = React.PropsWithChildren<{
   label: string;
@@ -79,6 +80,8 @@ export function Lot() {
   const { id } = useParams(router.routeTree.parentRoute);
   const lotIdx = parseInt(id);
   const lot = lots[lotIdx];
+
+  const { toast } = useToast();
 
   const [saved, setSaved] = useState(false);
 
@@ -159,7 +162,18 @@ export function Lot() {
                     <SavedIcon
                       filled={saved}
                       className="w-6 h-6 cursor-pointer"
-                      onClick={() => setSaved(!saved)}
+                      onClick={() => {
+                        toast({
+                          title: saved ? "Lot unsaved" : "Lot saved",
+                          description: `${
+                            saved
+                              ? `Removed ${lot.name} from`
+                              : `Added ${lot.name} to`
+                          } your saved lots.`,
+                          className: "rounded-xl",
+                        });
+                        setSaved(!saved);
+                      }}
                     />
                   </div>
                   <div className="divide-y divide-slate-300">
