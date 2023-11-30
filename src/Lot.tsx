@@ -173,6 +173,9 @@ export function Lot() {
                     )}
                     <LotDetail label="Time limit">3hrs</LotDetail>
                     <LotDetail label="Hours">5pm-8pm, Mon-Fri</LotDetail>
+                    <LotDetail label="Current Capacity">
+                      {lot.capacity ? `${lot.capacity * 100}%` : "Unavailable"}
+                    </LotDetail>
                     <div className="py-2">
                       <div className="text-slate-500">Activity</div>
                       <BarChart
