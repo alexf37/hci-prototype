@@ -9,6 +9,7 @@ export type Place = {
     latitude: number;
     longitude: number;
   };
+  address: string;
 };
 
 export const permits = [
@@ -38,6 +39,7 @@ export const places: Place[] = [
       latitude: 38.031979,
       longitude: -78.511192,
     },
+    address: "85 Engineer's Way, Charlottesville, VA 22904",
   },
   {
     id: 1,
@@ -48,6 +50,7 @@ export const places: Place[] = [
       latitude: 38.034851,
       longitude: -78.509308,
     },
+    address: "405 Emmet St S, Charlottesville, VA 22904",
   },
   {
     id: 2,
@@ -58,6 +61,7 @@ export const places: Place[] = [
       latitude: 37.540726,
       longitude: -77.43605,
     },
+    address: "Richmond, VA",
   },
   {
     id: 3,
@@ -68,6 +72,7 @@ export const places: Place[] = [
       latitude: 38.0321969,
       longitude: -78.5106805,
     },
+    address: "151 Engineer's Way, Charlottesville, VA 22904",
   },
   {
     id: 4,
@@ -78,6 +83,7 @@ export const places: Place[] = [
       latitude: 38.03286,
       longitude: -78.50996,
     },
+    address: "351 McCormick Rd, Charlottesville, VA 22904",
   },
   {
     id: 5,
@@ -88,6 +94,7 @@ export const places: Place[] = [
       latitude: 38.0363754,
       longitude: -78.5061131,
     },
+    address: "1328 McCormick Rd, Charlottesville, VA 22904",
   },
   {
     id: 6,
@@ -98,6 +105,7 @@ export const places: Place[] = [
       latitude: 38.0324774,
       longitude: -78.504062,
     },
+    address: "114 McCormick Rd, Charlottesville, VA 22904",
   },
   {
     id: 7,
@@ -108,6 +116,7 @@ export const places: Place[] = [
       latitude: 38.0329403,
       longitude: -78.5134577,
     },
+    address: "450 Whitehead Rd, Charlottesville, VA 22904",
   },
 ];
 
