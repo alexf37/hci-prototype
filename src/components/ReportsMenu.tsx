@@ -17,11 +17,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useToast } from "@/components/ui/use-toast";
 
 const CLASSNAME =
   "bg-white rounded-full pointer-events-auto grid place-content-center p-3 drop-shadow border border-slate-200";
 
 export function ReportsMenu() {
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const { latitude, longitude } = useGeolocation();
   const success = latitude !== null && longitude !== null;
@@ -60,7 +62,16 @@ export function ReportsMenu() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => addReport("construction")}>
+                  <AlertDialogAction
+                    onClick={() => {
+                      addReport("construction");
+                      toast({
+                        title: "Success!",
+                        description: "Added a construction report.",
+                        className: "rounded-xl",
+                      });
+                    }}
+                  >
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -82,7 +93,16 @@ export function ReportsMenu() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => addReport("police")}>
+                  <AlertDialogAction
+                    onClick={() => {
+                      addReport("police");
+                      toast({
+                        title: "Success!",
+                        description: "Added a police activity report.",
+                        className: "rounded-xl",
+                      });
+                    }}
+                  >
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
