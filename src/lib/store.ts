@@ -13,6 +13,7 @@ export type Place = {
 
 export const permits = [
   "All",
+  "None",
   "A2",
   "B2",
   "B5",

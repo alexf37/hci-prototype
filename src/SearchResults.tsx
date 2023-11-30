@@ -4,6 +4,7 @@ import { places } from "./lib/store";
 import { useEffect } from "react";
 import { useMap } from "react-map-gl";
 import { Search } from "lucide-react";
+import { FilterButton } from "./components/FilterButton";
 
 export function SearchResults() {
   const router = useRouter();
@@ -41,15 +42,16 @@ export function SearchResults() {
         <Search className="w-4 h-4 text-slate-500 mr-1" />
         Results near <span className="font-semibold">{place.name}</span>
       </button>
-      <div>
+      <div className="flex justify-between items-end">
         <button
           type="button"
-          className="py-2.5 px-3.5 pointer-events-auto bg-white border text-sm font-medium border-slate-300 shadow rounded-xl flex text-slate-900 items-center gap-1"
+          className="py-2.5 px-3.5 h-fit pointer-events-auto bg-white border text-sm font-medium border-slate-300 shadow rounded-xl flex text-slate-900 items-center gap-1"
           onClick={() => router.history.back()}
         >
           <LeftChevronIcon className="w-5 h-5" />
           Back
         </button>
+        <FilterButton />
       </div>
     </div>
   );

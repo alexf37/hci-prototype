@@ -1,11 +1,10 @@
-import { FilterModal } from "./components/FilterModal";
-import { FilterIcon } from "./components/icons/FilterIcon";
 import { ReportsMenu } from "./components/ReportsMenu";
 import { LocationIcon } from "./components/icons/LocationIcon";
 import { useMap } from "react-map-gl";
 import { useGeolocation } from "@uidotdev/usehooks";
 import { Command, CommandInput } from "./components/ui/command";
 import { useRouter } from "@tanstack/react-router";
+import { FilterButton } from "./components/FilterButton";
 
 export function Home() {
   const router = useRouter();
@@ -33,9 +32,7 @@ export function Home() {
       </div>
       <div className="h-full justify-between flex flex-col">
         <div className="flex w-full justify-end">
-          <FilterModal>
-            <FilterIcon className="w-7 h-7" />
-          </FilterModal>
+          <FilterButton />
         </div>
         <div className="flex w-full justify-between items-end">
           <button

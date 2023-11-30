@@ -29,9 +29,7 @@ export function FilterModal({ children }: React.PropsWithChildren) {
   }
   return (
     <Dialog>
-      <DialogTrigger className="bg-white rounded-full pointer-events-auto grid place-content-center p-3 drop-shadow border border-slate-200">
-        {children}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="rounded-xl">
         <DialogHeader className="text-left">
           <DialogTitle className="text-xl">Filters</DialogTitle>
