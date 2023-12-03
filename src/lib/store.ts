@@ -177,7 +177,7 @@ export const lots: ParkingLot[] = [
     type: "permit",
     permit: "B2",
     open: false,
-    capacity: 0.5,
+    capacity: 1,
     location: {
       latitude: 38.032078,
       longitude: -78.511774,
